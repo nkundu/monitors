@@ -1,4 +1,4 @@
 {
     "description": "Input sensors",
-    "type": "list"
+    "view": "list"
 }

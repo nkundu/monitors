@@ -12,7 +12,7 @@ function getConfig(srcpath) {
   try {
     return JSON.parse(fs.readFileSync(path.join(srcpath, 'config.json'), 'utf8'));
   } catch (e) {
-    return {};
+    return { view: 'list' };
   }
 }
 
@@ -30,9 +30,10 @@ function getDirectories(srcpath) {
 
 router.get('/:path(*)', function(req, res) {
   var sensorPath = path.join('.', 'data', req.path);
+  var sensorConfig = getConfig(sensorPath);
   var sensors = getDirectories(sensorPath);
-  res.render('index', {
-    config: getConfig(sensorPath),
+  res.render(sensorConfig.view, {
+    config: sensorConfig,
     name: req.path, 
     sensors: sensors
   });

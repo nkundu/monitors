@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  h1 Admin
+  h1= config.description
   h2= name
-  h2= config.description
+  small List View
   table.table.table-striped
       thead
           th Name

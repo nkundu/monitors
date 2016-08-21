@@ -1,4 +1,4 @@
 {
     "description": "Output Controls",
-    "type": "list"
+    "view": "list"
 }
