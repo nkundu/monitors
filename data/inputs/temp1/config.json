@@ -1,4 +1,5 @@
 {
     "description": "Temperature",
-    "view": "chart"
+    "view": "chart",
+    "unit": "deg F"
 }

@@ -1,18 +1,19 @@
 extends layout
 
+block append js
+  script(src='/js/jquery.flot.js')
+  script(src='/js/jquery.flot.time.js')
+  script.
+    $(document).ready(function() {
+        var data=#{data};
+        $.plot("#plot", [data], {
+            xaxis: { mode: "time" }
+        });
+    });
+
+
 block content
   h1= config.description
   h2= name
   small Chart View
-  table.table.table-striped
-      thead
-          th Name
-          th Description
-          th 
-      tbody.sortable
-          each item in sensors
-              tr
-                td= item.name
-                td= item.config.description
-                td
-                  a(href=item.path) View
+  #plot
