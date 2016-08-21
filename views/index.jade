@@ -1,5 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Admin
+  h2= name
+  h2= config.description
+  table.table.table-striped
+      thead
+          th Name
+          th Description
+          th 
+      tbody.sortable
+          each item in sensors
+              tr
+                td= item.name
+                td= item.config.description
+                td
+                  a(href=item.path) View
