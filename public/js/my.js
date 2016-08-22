@@ -14,7 +14,7 @@ var showBusyModal = function () {
 }
 
 $(document).ready(function(){
-​  $('a').click(function(){
-     $('<div class=loadingDiv>loading...</div>').prependTo(document.body); 
-  });​
+    $('a').click( function() {
+        showBusyModal();
+    });
 });
