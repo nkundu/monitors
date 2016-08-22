@@ -24,7 +24,7 @@ function getDirectories(srcpath) {
     return fs.statSync(path.join(srcpath, file)).isDirectory()
   }).map(function(itm) {
     return {
-      path: path.relative(path.join('.', 'data'), path.join(srcpath, itm)),
+      path: path.relative(path.join(__dirname, '..', 'data'), path.join(srcpath, itm)),
       name: itm,
       config: getConfig(path.join(srcpath, itm))
     };
