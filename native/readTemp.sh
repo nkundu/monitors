@@ -1,4 +1,6 @@
 #!/bin/bash
+cd "${0%/*}"
+
 while true; do
 OUTPUT=$(sudo ./dht22)
 HUMID=$(echo "$OUTPUT" | head -n 1 | tr -d '\n')

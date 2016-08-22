@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /home/pi/monitors/
-native/readTemp.sh &
-npm start &
+cd "${0%/*}"
+/home/pi/monitors/native/readTemp.sh &
+/usr/local/bin/npm start /home/pi/monitors/package.json  &
