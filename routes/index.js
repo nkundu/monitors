@@ -55,7 +55,7 @@ function getData(srcpath) {
 
 // route handler
 router.get('/:path(*)', function(req, res) {
-  var sensorPath = path.join('.', 'data', req.path);
+  var sensorPath = path.join(__dirname, '..', 'data', req.path);
   var sensorConfig = getConfig(sensorPath);
 
   if (sensorConfig.view == 'list') {
