@@ -2,8 +2,8 @@ extends layout
 
 block content
   h1= config.description
-  h2= name
-  small List View
+  h2= config.name
+  a(href=config.parent) Back
   table.table.table-striped
       thead
           th Name

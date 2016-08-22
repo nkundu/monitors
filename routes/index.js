@@ -56,20 +56,22 @@ function getData(srcpath) {
 // route handler
 router.get('/:path(*)', function(req, res) {
   var sensorPath = path.join(__dirname, '..', 'data', req.path);
+  var parentPath = path.relative(path.join(__dirname, '..', 'data'), path.join(sensorPath, '..'));
   var sensorConfig = getConfig(sensorPath);
+
+  sensorConfig.name = req.path;
+  sensorConfig.parent = '/' + parentPath;
 
   if (sensorConfig.view == 'list') {
     var sensors = getDirectories(sensorPath);
 
     res.render(sensorConfig.view, {
       config: sensorConfig,
-      name: req.path, 
       sensors: sensors
     });
   } else if (sensorConfig.view == 'chart') {
     res.render(sensorConfig.view, {
       config: sensorConfig,
-      name: req.path, 
       data: JSON.stringify(getData(sensorPath))
     });
   }
