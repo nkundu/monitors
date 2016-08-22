@@ -2,7 +2,7 @@
 cd "${0%/*}"
 
 while true; do
-OUTPUT=$(sudo ./dht22)
+OUTPUT=$(sudo -s ./dht22)
 HUMID=$(echo "$OUTPUT" | head -n 1 | tr -d '\n')
 TEMP=$(echo "$OUTPUT" | tail -n 1 | tr -d '\n')
 NOW=$(date +"%Y-%m-%d %H:%M")
