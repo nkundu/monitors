@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= config.description
+  h2= config.name
+  a(href=config.parent) Back
+
+  h2 Current State
+  p= state.current
+  h2 Desired State
+  p= state.desired
+  h2 Change State
+  form(method="post")
+    label
+        input(type="radio", name="val", value="1")
+        | ON
+    label
+        input(type="radio", name="val", value="0")
+        | OFF
+    br
+    input(type="submit", value="Set")
+  h2 State History

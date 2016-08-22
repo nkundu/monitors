@@ -31,6 +31,18 @@ function getDirectories(srcpath) {
   });
 }
 
+// get the current state and target state for a binary output
+function getState(srcpath) {
+  var result = {};
+  result.current = fs.readFileSync(path.join(srcpath, 'current.state'), 'utf8');
+  result.desired = fs.readFileSync(path.join(srcpath, 'desired.state'), 'utf8');
+  return result;
+}
+
+function setDesiredState(srcpath, val) {
+  fs.writeFileSync(path.join(srcpath, 'desired.state'), val, 'utf8');
+}
+
 // gets the raw data for the sensor
 function getData(srcpath) {
   var fileData = '';
@@ -74,8 +86,25 @@ router.get('/:path(*)', function(req, res) {
       config: sensorConfig,
       data: JSON.stringify(getData(sensorPath))
     });
+  } else if (sensorConfig.view == 'onoff') {
+    res.render(sensorConfig.view, {
+      config: sensorConfig,
+      state: getState(sensorPath)
+    });
   }
 
 });
+
+// route handler
+router.post('/:path(*)', function(req, res) {
+  var sensorPath = path.join(__dirname, '..', 'data', req.path);
+  var sensorConfig = getConfig(sensorPath);
+
+  if (sensorConfig.view == 'onoff') {
+    setDesiredState(sensorPath, req.body.val);
+  }
+  res.redirect(req.path);
+});
+
 
 module.exports = router;
