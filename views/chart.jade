@@ -7,7 +7,10 @@ block append js
     $(document).ready(function() {
         var data=#{data};
         $.plot("#plot", [data], {
-            xaxis: { mode: "time" }
+            xaxis: {
+                mode: "time",
+                timeformat:"%m/%d/%y %l:%M%p"       
+            }
         });
     });
 
