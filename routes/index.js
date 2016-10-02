@@ -67,7 +67,7 @@ function getData(srcpath) {
   var allData = allData.filter(function (val, idx) {
     // less than 30 days ago
     // compute hours, then compare to hours in 30 days
-    return Math.floor((new Date().getTime() - val[0]) / 36e5) < 24 * 30; 
+    return val != null && Math.floor((new Date().getTime() - val[0]) / 36e5) < 24 * 30; 
   });
 
   return allData;
